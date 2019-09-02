@@ -49,7 +49,7 @@ class Single extends Component {
     const endpoint =
       window.location.protocol === 'https:'
         ? this.state.endpointHTTPS
-        : this.state.endpointHTTPS;
+        : this.state.endpointHTTP;
     const socket = socketIOClient(endpoint);
     socket.emit('gameCardUpdate', singleGame);
   };

@@ -20,9 +20,6 @@ export class Playground extends Component {
         100,
         actions
       );
-      setTimeout(() => {
-        this.dispatchTimers();
-      }, 200);
     }
   }
 
@@ -33,11 +30,6 @@ export class Playground extends Component {
       if (res.success) {
       }
     });
-  };
-
-  dispatchTimers = () => {
-    const { actions } = this.props;
-    actions.getTimers();
   };
 
   render() {

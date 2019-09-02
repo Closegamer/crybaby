@@ -31,10 +31,6 @@ const CHECK_AUTOBETTING_SWITCH_EXECUTION_SUCCEED = `${prefix}/CHECK_AUTOBETTING_
 
 const CHECK_AUTOBETTING_SWITCH_EXECUTION_FAILED = `${prefix}/CHECK_AUTOBETTING_SWITCH_EXECUTION_FAILED`;
 
-const GET_TIMERS_SUCCEED = `${prefix}/GET_TIMERS_SUCCEED`;
-
-const GET_TIMERS_FAILED = `${prefix}/GET_TIMERS_FAILED`;
-
 const PLAYGROUND_REFRESH = `${prefix}/PLAYGROUND_REFRESH`;
 
 const FILTER_START = `${prefix}/FILTER_START`;
@@ -121,18 +117,6 @@ const checkAutobettingSwitchExecutionFailed = games => ({
   games
 });
 
-// Get timers
-
-const getTimersExecutionSucceed = (game, timer) => ({
-  type: GET_TIMERS_SUCCEED,
-  game,
-  timer
-});
-
-const getTimersExecutionFailed = () => ({
-  type: GET_TIMERS_FAILED
-});
-
 // autobetting refresh
 const playgroundRefreshExecute = games => ({
   type: PLAYGROUND_REFRESH,
@@ -173,7 +157,6 @@ export const filter = categories => (dispatch, getState) => {
       } else {
         dispatch(loadGames());
       }
-      dispatch(getTimers());
       return response.data;
     })
     .catch(error => {
@@ -196,27 +179,6 @@ export const refresh = games => (dispatch, getState) => {
         console.log('error: ', error);
       });
   }
-};
-
-export const getTimers = () => (dispatch, getState) => {
-  return axios
-    .post('/api/autobettings/get-timers', {
-      status: 'opened'
-    })
-    .then(response => {
-      const timers = response.data.timers;
-      timers.forEach(element => {
-        const game = element.game;
-        const timer = element.timer;
-        dispatch(getTimersExecutionSucceed(game, timer));
-      });
-      for (var i = 0; i < timers.length; i++) {}
-
-      return response.data;
-    })
-    .catch(error => {
-      dispatch(getTimersExecutionFailed(error.message));
-    });
 };
 
 export const checkAutobettingSwitch = () => (dispatch, getState) => {
@@ -395,23 +357,7 @@ export default function reducer(state = initialState, action = {}) {
       return Immutable.merge(state, {
         gameAutobettingSwitchCheckError: action.error
       });
-    case GET_TIMERS_SUCCEED:
-      return Immutable.merge(state, {
-        list: Immutable.flatMap(state.list, game => {
-          if (game._id === action.game) {
-            return {
-              ...game,
-              timer: action.timer
-            };
-          } else {
-            return game;
-          }
-        })
-      });
-    case GET_TIMERS_FAILED:
-      return Immutable.merge(state, {
-        getTimersExecutionFailed: action.error
-      });
+
     case GAME_TIMER_SYNC_EXECUTION:
       return Immutable.merge(state, {
         list: Immutable.flatMap(state.list, game => {

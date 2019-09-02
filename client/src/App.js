@@ -32,7 +32,7 @@ export class App extends Component {
     const endpoint =
       window.location.protocol === 'https:'
         ? this.state.endpointHTTPS
-        : this.state.endpointHTTPS;
+        : this.state.endpointHTTP;
     const socket = socketIOClient(endpoint);
     socket.emit('alert', msg);
   };
@@ -43,7 +43,7 @@ export class App extends Component {
     const endpoint =
       window.location.protocol === 'https:'
         ? this.state.endpointHTTPS
-        : this.state.endpointHTTPS;
+        : this.state.endpointHTTP;
     const socket = socketIOClient(endpoint);
 
     // setInterval(this.send(), 1000);

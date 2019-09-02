@@ -5,28 +5,28 @@ const fileUpload = require('express-fileupload');
 
 const fs = require('fs');
 
-const sslOptions = {
-  key: fs.readFileSync('ssl/sameplaces.ru.key'),
-  cert: fs.readFileSync('ssl/sameplaces.ru.chained.crt')
-};
+// const sslOptions = {
+//   key: fs.readFileSync('ssl/sameplaces.ru.key'),
+//   cert: fs.readFileSync('ssl/sameplaces.ru.chained.crt')
+// };
 
 const ioServer = require('socket.io');
 
 const socketPort = 4001;
-const socketSSLPort = 4002;
+// const socketSSLPort = 4002;
 
 const app = express();
 
 const http = require('http');
-const https = require('https');
+// const https = require('https');
 
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer(sslOptions);
+// const httpsServer = https.createServer(sslOptions);
 
 const io = new ioServer();
 
 io.attach(httpServer);
-io.attach(httpsServer);
+// io.attach(httpsServer);
 // httpServer.listen(socketPort);
 // httpsServer.listen(socketSSLPort);
 
@@ -112,8 +112,8 @@ httpServer.listen(socketPort, () =>
   console.log(`Sockets for HTTP started on port ${socketPort}`)
 );
 
-httpsServer.listen(socketSSLPort, () =>
-  console.log(`Sockets for HTTPS started on port ${socketSSLPort}`)
-);
+// httpsServer.listen(socketSSLPort, () =>
+//   console.log(`Sockets for HTTPS started on port ${socketSSLPort}`)
+// );
 
 module.exports = app;
