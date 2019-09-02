@@ -8,11 +8,11 @@ import {
   MDBCol,
   MDBAnimation
 } from 'mdbreact';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import injectSheet from 'react-jss';
 
-import PionImg from '../../../img/intro.png';
-import PionBg from '../../../img/intro_bg.jpg';
+// import PionImg from '../../../img/intro.png';
+// import PionBg from '../../../img/intro_bg.jpg';
 
 const Intro = ({ classes }) => {
   return (
@@ -27,7 +27,7 @@ const Intro = ({ classes }) => {
                     Школа шокофлористики{' '}
                   </h1>
                   <hr className='hr-light' />
-                  <h6 className={classNames('mb-4', classes.h6)}>
+                  <h6 className='mb-4'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Rem repellendus quasi fuga nesciunt dolorum nulla magnam
                     veniam sapiente, fugiat! Commodi sequi non animi ea dolor
@@ -45,7 +45,7 @@ const Intro = ({ classes }) => {
                 className='mt-xl-5 col-8 offset-2 offset-md-0'
               >
                 <MDBAnimation type='fadeInRight'>
-                  <img src={PionImg} alt='' className='img-fluid' />
+                  {/* <img src={PionImg} alt='' className='img-fluid' /> */}
                 </MDBAnimation>
               </MDBCol>
             </MDBRow>
@@ -58,7 +58,7 @@ const Intro = ({ classes }) => {
 
 const styles = {
   view: {
-    backgroundImage: `url('${PionBg}')`,
+    // backgroundImage: `url('${PionBg}')`,
     //backgroundColor: 'red',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',

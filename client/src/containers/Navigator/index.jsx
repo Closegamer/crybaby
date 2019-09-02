@@ -124,21 +124,16 @@ export class Navigator extends Component {
             </MDBSideNavCat>
           </MDBSideNavNav>
         </MDBSideNav>
-        <MDBNavbar
-          double
-          expand='md'
-          fixed='top'
-          scrolling
-          color='peach-gradient'
-        >
+        <MDBNavbar double expand='md' fixed='top' scrolling color='brown'>
           <div className='logo-cont text-center'>
             <MDBNavbarBrand href='/'>
-              <img src={logo} className='img-fluid logo' alt='SP-logo' />
+              logo
+              {/* <img src={logo} className='img-fluid logo' alt='SP-logo' /> */}
             </MDBNavbarBrand>
           </div>
 
           <MDBNavbarNav left>
-            {/* <MDBNavItem>
+            <MDBNavItem>
               <div
                 onClick={this.toggleLeftMenu}
                 key='sideNavToggleA'
@@ -150,14 +145,14 @@ export class Navigator extends Component {
               >
                 <MDBIcon icon='bars' color='white' />
               </div>
-            </MDBNavItem> */}
+            </MDBNavItem>
             <MDBNavItem
               active={this.props.location.pathname.includes('/rules')}
             >
-              {/* <MDBNavLink to='/about'>
+              <MDBNavLink to='/about'>
                 <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Правила</div>
-              </MDBNavLink> */}
+              </MDBNavLink>
             </MDBNavItem>
             {isLoggedIn && (
               <MDBNavItem>
