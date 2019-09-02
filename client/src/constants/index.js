@@ -1,3 +1,3 @@
-const SITE_NAME = 'SamePlaces';
+const SITE_NAME = "CryBaby Joe's Saloon";
 
 export { SITE_NAME };

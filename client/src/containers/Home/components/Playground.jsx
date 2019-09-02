@@ -13,13 +13,13 @@ export class Playground extends Component {
   componentDidMount() {
     const { gamesLoadedAt, actions } = this.props;
     if (!gamesLoadedAt) {
-      setTimeout(
-        actions => {
-          actions.loadGames();
-        },
-        100,
-        actions
-      );
+      // setTimeout(
+      //   actions => {
+      //     actions.loadGames();
+      //   },
+      //   100,
+      //   actions
+      // );
     }
   }
 
@@ -75,9 +75,9 @@ export class Playground extends Component {
             )}
           </MDBCol>
           <MDBCol xs='12' sm='3' md='3' lg='3' xl='2'>
-            <div className='filterClass text-center'>
+            {/* <div className='filterClass text-center'>
               <Filter onSubmit={this.onFilter} />
-            </div>
+            </div> */}
           </MDBCol>
         </MDBRow>
       </MDBContainer>

@@ -184,6 +184,18 @@ export class Navigator extends Component {
               <React.Fragment>
                 <MDBNavItem>
                   <WaveComponent
+                    onClick={this.props.toggleBalanceForm}
+                    tag='a'
+                    className='nav-link'
+                  >
+                    <MDBIcon icon='credit-card' className='d-inline-inline' />{' '}
+                    <div className='d-none d-md-inline'>
+                      Баланс: {balance.value}
+                    </div>
+                  </WaveComponent>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <WaveComponent
                     onClick={this.props.logout}
                     tag='a'
                     className='nav-link'

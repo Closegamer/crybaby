@@ -36,7 +36,7 @@ router.post(
         .json({ success: false, error: errors.array().join(', ') });
     }
 
-    const { nick, email, password, role } = req.body;
+    const { nick, email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -50,6 +50,8 @@ router.post(
       let stuff = 'no';
       let balance = 0;
       let discount = 0;
+      let contribution = 0;
+      let paidGoods = [];
 
       user = new User({
         nick,
@@ -58,6 +60,8 @@ router.post(
         role,
         stuff,
         discount,
+        contribution,
+        paidGoods,
         balance
       });
 
@@ -141,13 +145,10 @@ router.post(
     }
 
     const { balance } = req.body;
-    console.log('api user balance post balance: ', balance);
     const currentUserId = req.user.id;
 
-    console.log(currentUserId);
     try {
       const foundUserId = await User.findById(currentUserId);
-      console.log(foundUserId);
 
       const currentBalance = foundUserId.balance;
 
