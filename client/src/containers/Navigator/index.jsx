@@ -6,7 +6,7 @@ import { toggleLoginForm, logout } from '../../ducks/auth';
 import { toggleBalanceForm } from '../../ducks/balance';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
-import logo from '../../img/logo_big_white.png';
+// import logo from '../../img/logo_big_white.png';
 import WaveComponent from '../../components/WaveComponent';
 import './styles.css';
 
@@ -52,7 +52,7 @@ export class Navigator extends Component {
     return (
       <div className='mdb-skin'>
         <MDBSideNav
-          logo={logo}
+          // logo={logo}
           triggerOpening={this.state.leftMenuIsOpen}
           // bg='https://mdbootstrap.com/img/Photos/Others/sidenav4.jpg'
           mask='strong'
@@ -124,7 +124,7 @@ export class Navigator extends Component {
             </MDBSideNavCat>
           </MDBSideNavNav>
         </MDBSideNav>
-        <MDBNavbar double expand='md' fixed='top' scrolling color='brown'>
+        <MDBNavbar double expand='md' fixed='top' scrolling transparent>
           <div className='logo-cont text-center'>
             <MDBNavbarBrand href='/'>
               logo
