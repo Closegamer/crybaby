@@ -139,6 +139,9 @@ h2 {
 
 .calculator-stake-container {
   width: 100%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 30px;
 }
 
 .controlButs-containers {
@@ -154,5 +157,10 @@ h2 {
 }
 
 .centeredInput {
+  text-align: center;
+}
+
+.headerRow {
+  margin-bottom: 50px;
   text-align: center;
 }
