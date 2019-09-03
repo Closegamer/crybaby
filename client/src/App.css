@@ -47,6 +47,9 @@ h2 {
 
 .bordered {
   border: 1px solid green;
+  margin-bottom: 0;
+  margin-top: auto;
+  padding: 0;
 }
 
 @media (max-width: 375px) {
@@ -82,7 +85,7 @@ h2 {
 }
 
 .contentArea-container {
-  padding: 15px;
+  padding: 30px;
   box-shadow: 3px 7px 10px 1px grey;
   border-radius: 4px;
 }
@@ -112,5 +115,44 @@ h2 {
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.calcBody {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+
+.calculator-content-container {
+  margin-top: 30px;
+}
+
+.md-pills .nav-link.active {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  color: #fff;
+  background-color: #243a51;
+}
+
+.calculator-stake-container {
+  width: 100%;
+}
+
+.controlButs-containers {
+  margin-bottom: 0;
+  margin-top: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.controlButs {
+  margin: 0;
+  margin-bottom: 1px;
+}
+
+.centeredInput {
   text-align: center;
 }

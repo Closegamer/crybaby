@@ -195,7 +195,7 @@ export class Navigator extends Component {
             >
               <MDBNavLink to='/calculator'>
                 <MDBIcon icon='calculator' className='d-inline-inline' />{' '}
-                <div className='d-none d-md-inline'>Калькулятор</div>
+                <div className='d-none d-md-inline'>Калькуляторы</div>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem
