@@ -2,7 +2,7 @@ import React from 'react';
 
 import Intro from './components/Intro';
 
-function Page(props) {
+function HomePage(props) {
   return (
     <React.Fragment>
       <Intro />
@@ -10,6 +10,6 @@ function Page(props) {
   );
 }
 
-Page.propTypes = {};
+HomePage.propTypes = {};
 
-export default Page;
+export default HomePage;
