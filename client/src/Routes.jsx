@@ -8,6 +8,7 @@ const Robots = lazy(() => import('./containers/Robots'));
 const Stories = lazy(() => import('./containers/Stories'));
 const Bookmakers = lazy(() => import('./containers/Bookmakers'));
 const Windows = lazy(() => import('./containers/Windows'));
+const Loads = lazy(() => import('./containers/Loads'));
 
 function Routes() {
   return (
@@ -20,6 +21,7 @@ function Routes() {
         <Route exact path='/stories' component={Stories} />
         <Route exact path='/bookmakers' component={Bookmakers} />
         <Route exact path='/windows' component={Windows} />
+        <Route exact path='/loads' component={Loads} />
       </Switch>
     </Suspense>
   );

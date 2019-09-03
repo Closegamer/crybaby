@@ -186,7 +186,7 @@ export class Navigator extends Component {
               active={this.props.location.pathname.includes('/tables')}
             >
               <MDBNavLink to='/tables'>
-                <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
+                <MDBIcon icon='table' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Таблички</div>
               </MDBNavLink>
             </MDBNavItem>
@@ -194,7 +194,7 @@ export class Navigator extends Component {
               active={this.props.location.pathname.includes('/calculator')}
             >
               <MDBNavLink to='/calculator'>
-                <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
+                <MDBIcon icon='calculator' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Калькулятор</div>
               </MDBNavLink>
             </MDBNavItem>
@@ -202,7 +202,7 @@ export class Navigator extends Component {
               active={this.props.location.pathname.includes('/robots')}
             >
               <MDBNavLink to='/robots'>
-                <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
+                <MDBIcon icon='robot' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Роботы</div>
               </MDBNavLink>
             </MDBNavItem>
@@ -210,24 +210,24 @@ export class Navigator extends Component {
               active={this.props.location.pathname.includes('/windows')}
             >
               <MDBNavLink to='/windows'>
-                <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
+                <MDBIcon icon='window-maximize' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Окна</div>
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem
+              active={this.props.location.pathname.includes('/loads')}
+            >
+              <MDBNavLink to='/loads'>
+                <MDBIcon icon='weight' className='d-inline-inline' />{' '}
+                <div className='d-none d-md-inline'>Прогрузы</div>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem
               active={this.props.location.pathname.includes('/bookmakers')}
             >
               <MDBNavLink to='/bookmakers'>
-                <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
+                <MDBIcon icon='chart-bar' className='d-inline-inline' />{' '}
                 <div className='d-none d-md-inline'>Букмекеры</div>
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem
-              active={this.props.location.pathname.includes('/stories')}
-            >
-              <MDBNavLink to='/stories'>
-                <MDBIcon icon='envelope' className='d-inline-inline' />{' '}
-                <div className='d-none d-md-inline'>Истории</div>
               </MDBNavLink>
             </MDBNavItem>
 
