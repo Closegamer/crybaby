@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import Navigator from './containers/Navigator';
+import Footer from './containers/Footer';
 import LoginForm from './containers/Login';
 import BalanceForm from './containers/Balance';
 import Routes from './Routes';
@@ -58,6 +59,7 @@ export class App extends Component {
           <div className='app'>
             <Navigator />
             <Routes />
+            <Footer />
             <LoginForm />
             <BalanceForm />
             <ToastContainer

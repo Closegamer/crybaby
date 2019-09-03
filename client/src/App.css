@@ -39,3 +39,78 @@ h2 {
 .logo-label {
   font-size: 5px;
 }
+
+.main-container {
+  margin-top: 10px;
+  width: 98%;
+}
+
+.bordered {
+  border: 1px solid green;
+}
+
+@media (max-width: 375px) {
+  .main-container {
+    margin-top: 160px;
+  }
+}
+
+.banner240x400 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 240px;
+  height: 400px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+
+.banner728x90custom {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 728px;
+  height: 90px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid red;
+}
+
+.bannerRight-container {
+  padding: 5px;
+}
+
+.contentArea-container {
+  padding: 15px;
+  box-shadow: 3px 7px 10px 1px grey;
+  border-radius: 4px;
+}
+
+.bannerTop-container {
+  padding: 5px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.bannerBottom-container {
+  padding: 5px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.footer-container {
+  height: 46px;
+  background-color: #243a51;
+  color: white;
+}
+
+.footer-copyright {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}

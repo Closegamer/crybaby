@@ -133,7 +133,7 @@ export class Navigator extends Component {
           </div>
 
           <MDBNavbarNav left>
-            <MDBNavItem>
+            {/* <MDBNavItem>
               <div
                 onClick={this.toggleLeftMenu}
                 key='sideNavToggleA'
@@ -145,7 +145,7 @@ export class Navigator extends Component {
               >
                 <MDBIcon icon='bars' color='white' />
               </div>
-            </MDBNavItem>
+            </MDBNavItem> */}
 
             {isLoggedIn && (
               <React.Fragment>
