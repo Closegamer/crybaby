@@ -4,38 +4,89 @@ import StakeCalcTiny from './stakeCalcTiny';
 
 export class StakeCalc extends Component {
   state = {
-    value: 1,
+    rows: 1,
     array: [],
     stakeFav: 0,
-    result: 0,
-    kefArray: []
-  };
-
-  decrease = () => {
-    if (this.state.value > 1) {
-      this.setState({ value: this.state.value - 1 });
-      this.state.array.pop();
-    }
+    kef1: 1,
+    addKefs: [],
+    totalKef: 1,
+    result: 0
   };
 
   increase = () => {
-    this.setState({ value: this.state.value + 1 });
-    this.state.array.push(this.state.value);
+    var oldRows = this.state.rows;
+    this.setState({
+      rows: oldRows + 1
+    });
+    this.state.array.push(this.state.rows);
+  };
+
+  decrease = () => {
+    if (this.state.rows > 1) {
+      if (this.state.addKefs.length > 1) {
+        this.state.addKefs.pop();
+      } else {
+        var kef1 = this.state.kef1;
+        var stakeFav = this.state.stakeFav;
+
+        this.setState({
+          addKefs: [],
+          totalKef: 1,
+          result: kef1 * stakeFav
+        });
+      }
+      this.state.array.pop();
+
+      var addKefsNew = this.state.addKefs;
+
+      this.setState({
+        rows: this.state.rows - 1,
+        addKefs: addKefsNew
+      });
+    }
+  };
+
+  addKefsHandler = value => {
+    console.log(value);
+    let kef1 = this.state.kef1;
+
+    if (value > 0) {
+      let addKefs = this.state.addKefs;
+      addKefs.push(value);
+      var totKef = kef1;
+      let tk = 1;
+
+      for (var i = 0; i < addKefs.length; i++) {
+        tk *= addKefs[i];
+        totKef = kef1 * tk;
+      }
+
+      this.setState({
+        addKefs: value,
+        totalKef: totKef
+      });
+    }
+
+    if (value === 0) {
+      this.setState({
+        addKefs: [],
+        totalKef: kef1
+      });
+    }
+    console.log(this.state);
   };
 
   calculate = () => {
-    console.log(this.state);
-    const kefs = this.state.kefArray;
-    console.log('kefs', kefs);
-    var totalKef = 1;
-    for (var t = 0; t < kefs.length; t++) {
-      totalKef *= kefs[t];
-    }
-    console.log('totalKef', totalKef);
     const stakeFav = this.state.stakeFav;
-    if (totalKef > 0 && stakeFav > 0) {
-      var res = totalKef * stakeFav;
-      console.log('res', res);
+    const kef1 = this.state.kef1;
+    const addKefs = this.state.addKefs;
+    var totKefs = 1;
+    for (var t = 0; t < addKefs.length; t++) {
+      totKefs *= addKefs[t];
+    }
+
+    if (kef1 > 0 && stakeFav > 0) {
+      var res = stakeFav * kef1 * totKefs;
       this.setState({ result: res });
     }
   };
@@ -44,12 +95,8 @@ export class StakeCalc extends Component {
     this.setState({ stakeFav: e.target.value });
   };
 
-  takeKef = e => {
-    const kefArr = this.state.kefArray;
-    kefArr.push(e.target.value);
-
-    this.setState({ kefArray: kefArr });
-    // console.log(this.state);
+  takeKef1 = e => {
+    this.setState({ kef1: e.target.value });
   };
 
   render() {
@@ -82,7 +129,7 @@ export class StakeCalc extends Component {
                         type='text'
                         id='inputKef1'
                         className='form-control form-control-lg centeredInput'
-                        onChange={this.takeKef}
+                        onChange={this.takeKef1}
                         onBlur={this.calculate}
                       />
                     </div>
@@ -90,10 +137,28 @@ export class StakeCalc extends Component {
                 </MDBRow>
                 {this.state.array.length > 0 &&
                   this.state.array.map(element => (
-                    <StakeCalcTiny key={element} index={element} />
+                    <StakeCalcTiny
+                      key={element}
+                      index={element}
+                      addKefsHandler={this.addKefsHandler}
+                      calculate={this.calculate}
+                    />
                   ))}
                 <MDBRow>
-                  <MDBCol size={6}>&nbsp;</MDBCol>
+                  <MDBCol size={6}>
+                    {this.state.rows > 1 && (
+                      <div className='form-group'>
+                        <label htmlFor='inputPayout'>Общий коэффициент</label>
+                        <input
+                          type='text'
+                          id='inputKefSumm'
+                          disabled
+                          className='form-control form-control-lg centeredInput'
+                          value={this.state.totalKef}
+                        />
+                      </div>
+                    )}
+                  </MDBCol>
                   <MDBCol size={6}>
                     <div className='form-group'>
                       <label htmlFor='inputPayout'>Выплата</label>
@@ -101,7 +166,7 @@ export class StakeCalc extends Component {
                         type='text'
                         id='inputPayout'
                         disabled
-                        className='form-control form-control-lg'
+                        className='form-control form-control-lg centeredInput'
                         value={this.state.result}
                       />
                     </div>
@@ -126,7 +191,7 @@ export class StakeCalc extends Component {
                         type='text'
                         id='quantity'
                         name='quantity'
-                        value={this.state.value}
+                        value={this.state.rows}
                         className='form-control form-control-lg centeredInput'
                         onChange={() => console.log('change')}
                       />
@@ -143,15 +208,17 @@ export class StakeCalc extends Component {
                       </MDBBtn>
                     </MDBCol>
                     <MDBCol size={3} className='controlButs-containers'>
-                      <MDBBtn
-                        outline
-                        rounded
-                        color='danger'
-                        onClick={this.decrease}
-                        className='controlButs'
-                      >
-                        <MDBIcon icon='minus' />
-                      </MDBBtn>
+                      {this.state.rows > 1 && (
+                        <MDBBtn
+                          outline
+                          rounded
+                          color='danger'
+                          onClick={this.decrease}
+                          className='controlButs'
+                        >
+                          <MDBIcon icon='minus' />
+                        </MDBBtn>
+                      )}
                     </MDBCol>
                   </MDBRow>
                 </div>

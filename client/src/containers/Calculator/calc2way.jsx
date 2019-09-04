@@ -5,7 +5,11 @@ export class Calc2Way extends Component {
   render() {
     return (
       <MDBContainer className='calculator-container' fluid>
-        кальк 2
+        <MDBRow>
+          <MDBCol>
+            
+          </MDBCol>
+        </MDBRow>
       </MDBContainer>
     );
   }
