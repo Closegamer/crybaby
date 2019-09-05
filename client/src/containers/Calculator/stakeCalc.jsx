@@ -228,6 +228,43 @@ export class StakeCalc extends Component {
                     />
                   ))}
                 <MDBRow>
+                  <MDBCol size={6}>&nbsp;</MDBCol>
+                  <MDBCol size={6}>
+                    <MDBRow>
+                      <MDBCol
+                        size={6}
+                        className='controlButs-containers text-center'
+                      >
+                        <MDBBtn
+                          outline
+                          rounded
+                          color='success'
+                          onClick={this.increase}
+                          className='controlButs'
+                        >
+                          <MDBIcon icon='plus' />
+                        </MDBBtn>
+                      </MDBCol>
+                      <MDBCol
+                        size={3}
+                        className='controlButs-containers text-center'
+                      >
+                        {this.state.rows > 1 && (
+                          <MDBBtn
+                            outline
+                            rounded
+                            color='danger'
+                            onClick={this.decrease}
+                            className='controlButs'
+                          >
+                            <MDBIcon icon='minus' />
+                          </MDBBtn>
+                        )}
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow className='m50'>
                   <MDBCol size={6}>
                     {this.state.rows > 1 && (
                       <div className='form-group'>
@@ -254,7 +291,6 @@ export class StakeCalc extends Component {
                       />
                     </div>
                   </MDBCol>
-                  <MDBCol size={6}>&nbsp;</MDBCol>
                 </MDBRow>
               </MDBCol>
             </MDBRow>
@@ -278,30 +314,6 @@ export class StakeCalc extends Component {
                         className='form-control form-control-lg centeredInput'
                         onChange={() => console.log('change')}
                       />
-                    </MDBCol>
-                    <MDBCol size={3} className='controlButs-containers'>
-                      <MDBBtn
-                        outline
-                        rounded
-                        color='success'
-                        onClick={this.increase}
-                        className='controlButs'
-                      >
-                        <MDBIcon icon='plus' />
-                      </MDBBtn>
-                    </MDBCol>
-                    <MDBCol size={3} className='controlButs-containers'>
-                      {this.state.rows > 1 && (
-                        <MDBBtn
-                          outline
-                          rounded
-                          color='danger'
-                          onClick={this.decrease}
-                          className='controlButs'
-                        >
-                          <MDBIcon icon='minus' />
-                        </MDBBtn>
-                      )}
                     </MDBCol>
                   </MDBRow>
                 </div>

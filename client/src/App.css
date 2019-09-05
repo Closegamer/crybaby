@@ -168,3 +168,7 @@ h2 {
 .valid-error {
   background-color: red;
 }
+
+.m50 {
+  margin-top: 50px;
+}
