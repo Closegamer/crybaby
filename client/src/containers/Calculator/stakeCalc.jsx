@@ -29,18 +29,40 @@ export class StakeCalc extends Component {
 
   decrease = () => {
     if (this.state.rows > 1) {
-      var kef1 = this.state.kef1;
-      const deletedKefPre = this.state.addKefs[this.state.addKefs.length - 1];
-      console.log('deletedKefPre', deletedKefPre);
+      let kef1 = this.state.kef1;
+      let addKefsArray = this.state.addKefs;
+      let addKefsCnt = this.state.addKefs.length;
+      let addKefsIndex = addKefsCnt - 1;
+
+      console.log('decrease addKefsCnt:', addKefsCnt);
+
+      let deletedKefPre = addKefsArray[addKefsIndex];
+
+      // if (addKefsCnt > 1) {
+      //   deletedKefPre = this.state.addKefs[addKefsCnt - 1];
+      // } else {
+      // }
+      console.log('decrease this.state.addKefs', addKefsArray);
+
+      console.log('decrease deletedKefPre', deletedKefPre);
 
       const delKef = deletedKefPre.split('/');
 
       const deletedKef = delKef[1];
 
-      console.log('deletedKef', deletedKef);
-      if (this.state.addKefs.length > 1) {
+      console.log('decrease deletedKef', deletedKef);
+
+      if (addKefsCnt > 1) {
         this.state.addKefs.pop();
         this.state.array.pop();
+
+        let addKefsNew = this.state.addKefs;
+        let arrayNew = this.state.array;
+
+        this.setState({
+          addKefs: addKefsNew,
+          array: arrayNew
+        });
       } else {
         var stakeFav = this.state.stakeFav;
         this.setState({
@@ -74,7 +96,13 @@ export class StakeCalc extends Component {
         result: newResult
       });
     }
+
+    console.log(
+      'decrease this.state.addKefs.length:',
+      this.state.addKefs.length
+    );
     console.log('decrease state: ', this.state);
+    this.calculate();
   };
 
   addKefsHandler = value => {
