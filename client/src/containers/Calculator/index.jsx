@@ -16,7 +16,7 @@ import StakeCalc from './stakeCalc';
 export class Calculator extends Component {
   state = {
     items: {
-      content: '1',
+      content: '2',
       contentCard: '1'
     }
   };
