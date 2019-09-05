@@ -14,8 +14,9 @@ export class StakeCalcTiny extends Component {
               type='text'
               id={`inputKef${index}`}
               className='form-control form-control-lg centeredInput'
-              onChange={e => addKefsHandler(e.target.value)}
-              onBlur={calculate}
+              onBlur={e =>
+                addKefsHandler('inputKef' + index + '/' + e.target.value)
+              }
             />
           </div>
         </MDBCol>
