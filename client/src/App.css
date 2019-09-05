@@ -164,3 +164,7 @@ h2 {
   margin-bottom: 50px;
   text-align: center;
 }
+
+.valid-error {
+  background-color: red;
+}

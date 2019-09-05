@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBContainer, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
 import StakeCalcTiny from './stakeCalcTiny';
-
 export class StakeCalc extends Component {
   state = {
     rows: 1,
@@ -24,8 +23,6 @@ export class StakeCalc extends Component {
       rows: oldRows + 1,
       array: arrayNew
     });
-
-    const ww = this.state.addKefs;
   };
 
   decrease = () => {
@@ -70,16 +67,39 @@ export class StakeCalc extends Component {
   };
 
   addKefsHandler = value => {
+    let addKefsNew = this.state.addKefs;
     let kef1 = this.state.kef1;
     let valueSplit = value.split('/');
-    if (valueSplit[1] > 0) {
-      let addKefsNew = this.state.addKefs;
 
+    for (var i = 0; i < addKefsNew.length; i++) {
+      let temp = addKefsNew[i].split('/');
+      if (temp[0] === valueSplit[0]) {
+        addKefsNew.splice(i);
+        addKefsNew.push(value);
+        this.calculate();
+        return;
+      }
+    }
+
+    if (valueSplit[1] <= 0) {
+      var field = document.getElementById(valueSplit[0]);
+      field.value = '1';
+      return;
+    }
+
+    var valueAsString = String(valueSplit[1]);
+    var coma = ',';
+    var dot = '.';
+
+    if (valueAsString.indexOf(coma) > -1 || valueAsString.indexOf(dot) > -1) {
+      parseFloat(valueSplit[1]);
+    }
+
+    if (valueSplit[1] > 0) {
       addKefsNew.push(value);
 
       var totKef = kef1;
       let tk = 1;
-
       if (addKefsNew.length > 0) {
         for (var i = 0; i < addKefsNew.length; i++) {
           let shuttle = addKefsNew[i].split('/');
@@ -87,13 +107,15 @@ export class StakeCalc extends Component {
           totKef = kef1 * tk;
         }
       }
-
-      this.setState({
-        addKefs: addKefsNew,
-        totalKef: totKef
-      });
     }
 
+    if (valueSplit[1] <= 0) {
+      addKefsNew.push(valueSplit[0] + '/' + '1');
+    }
+    this.setState({
+      addKefs: addKefsNew,
+      totalKef: totKef
+    });
     this.calculate();
   };
 
@@ -126,16 +148,36 @@ export class StakeCalc extends Component {
   };
 
   takeStakeFav = e => {
-    this.setState({ stakeFav: e.target.value });
+    if (e.target.value <= 0) {
+      var field = document.getElementById('inputStake');
+      field.value = '1';
+      this.setState({
+        stakeFav: 1
+      });
+      this.calculate();
+      return;
+    } else {
+      this.setState({ stakeFav: e.target.value });
+    }
   };
 
   takeKef1 = e => {
     const totalKefNew = this.state.totalKef;
-    const kef1New = e.target.value;
-    this.setState({
-      kef1: kef1New,
-      totalKef: totalKefNew * kef1New
-    });
+    if (e.target.value <= 0) {
+      var field = document.getElementById('inputKef1');
+      field.value = '1';
+      this.setState({
+        kef1: 1,
+        totalKef: totalKefNew
+      });
+      return;
+    } else {
+      const kef1New = e.target.value;
+      this.setState({
+        kef1: kef1New,
+        totalKef: totalKefNew * kef1New
+      });
+    }
   };
 
   render() {
@@ -153,7 +195,8 @@ export class StakeCalc extends Component {
                     <div className='form-group'>
                       <label htmlFor='inputStake'>Размер ставки</label>
                       <input
-                        type='text'
+                        type='number'
+                        min='1'
                         id='inputStake'
                         className='form-control form-control-lg centeredInput'
                         onChange={this.takeStakeFav}
@@ -165,7 +208,8 @@ export class StakeCalc extends Component {
                     <div className='form-group'>
                       <label htmlFor='inputKef1'>Коэффициент</label>
                       <input
-                        type='text'
+                        type='number'
+                        min='1'
                         id='inputKef1'
                         className='form-control form-control-lg centeredInput'
                         onChange={this.takeKef1}

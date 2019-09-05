@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBCol } from 'mdbreact';
-import { addKefsHandler } from './stakeCalc';
 
 export class StakeCalcTiny extends Component {
   render() {
-    const { index, addKefsHandler, calculate } = this.props;
+    const { index, addKefsHandler } = this.props;
     return (
       <MDBRow>
         <MDBCol size={6}>&nbsp;</MDBCol>
         <MDBCol size={6}>
           <div className='form-group'>
             <input
-              type='text'
+              type='number'
+              min='1'
               id={`inputKef${index}`}
               className='form-control form-control-lg centeredInput'
               onBlur={e =>
