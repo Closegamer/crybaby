@@ -24,99 +24,59 @@ export class StakeCalc extends Component {
       rows: oldRows + 1,
       array: arrayNew
     });
-    console.log('increase state: ', this.state);
+
+    const ww = this.state.addKefs;
   };
 
   decrease = () => {
     if (this.state.rows > 1) {
+      let stakeFav = this.state.stakeFav;
       let kef1 = this.state.kef1;
+
       let addKefsArray = this.state.addKefs;
+
       let addKefsCnt = this.state.addKefs.length;
+
+      if (addKefsCnt === 0) {
+        return;
+      }
+
       let addKefsIndex = addKefsCnt - 1;
-
-      console.log('decrease addKefsCnt:', addKefsCnt);
-
       let deletedKefPre = addKefsArray[addKefsIndex];
-
-      // if (addKefsCnt > 1) {
-      //   deletedKefPre = this.state.addKefs[addKefsCnt - 1];
-      // } else {
-      // }
-      console.log('decrease this.state.addKefs', addKefsArray);
-
-      console.log('decrease deletedKefPre', deletedKefPre);
-
       const delKef = deletedKefPre.split('/');
-
       const deletedKef = delKef[1];
 
-      console.log('decrease deletedKef', deletedKef);
+      if (addKefsCnt > 0) {
+        let addKefsToDelete = this.state.addKefs;
+        addKefsToDelete.pop();
+        let arrayToDelete = this.state.array;
+        arrayToDelete.pop();
 
-      if (addKefsCnt > 1) {
-        this.state.addKefs.pop();
-        this.state.array.pop();
+        let result = this.state.result;
+        let totalKef = this.state.totalKef;
 
-        let addKefsNew = this.state.addKefs;
-        let arrayNew = this.state.array;
+        var newResult = result / deletedKef;
+        var newTotalKef = totalKef / deletedKef;
+
+        var rowsNew = this.state.rows - 1;
 
         this.setState({
-          addKefs: addKefsNew,
-          array: arrayNew
-        });
-      } else {
-        var stakeFav = this.state.stakeFav;
-        this.setState({
-          addKefs: [],
-          totalKef: kef1,
-          result: kef1 * stakeFav
+          rows: rowsNew,
+          totalKef: newTotalKef,
+          result: newResult
         });
       }
-
-      var addKefsNew = this.state.addKefs;
-      console.log('decrease addKefsNew', addKefsNew);
-      var tk = 1;
-      var totKef = 1;
-
-      for (var i = 0; i < addKefsNew.length; i++) {
-        let shuttle = addKefsNew[i].split('/');
-        tk *= shuttle[1];
-        totKef = kef1 * tk;
-      }
-
-      let result = this.state.result;
-      let totalKef = this.state.totalKef;
-
-      var newResult = result / deletedKef;
-      var newTotalKef = totalKef / deletedKef;
-
-      this.setState({
-        rows: this.state.rows - 1,
-        addKefs: totKef,
-        totalKef: newTotalKef,
-        result: newResult
-      });
     }
-
-    console.log(
-      'decrease this.state.addKefs.length:',
-      this.state.addKefs.length
-    );
-    console.log('decrease state: ', this.state);
-    this.calculate();
   };
 
   addKefsHandler = value => {
-    console.log('addKefsHandler value:', value);
-    console.log('addKefsHandler this.state.addKefs:', this.state.addKefs);
     let kef1 = this.state.kef1;
     let valueSplit = value.split('/');
-    console.log(valueSplit[1]);
     if (valueSplit[1] > 0) {
       let addKefsNew = this.state.addKefs;
 
       addKefsNew.push(value);
 
-      console.log('addKefsHandler addKefsNew:', addKefsNew);
       var totKef = kef1;
       let tk = 1;
 
@@ -134,13 +94,6 @@ export class StakeCalc extends Component {
       });
     }
 
-    if (value === 0) {
-      this.setState({
-        addKefs: [],
-        totalKef: kef1
-      });
-    }
-    console.log('addKefsHandler state:', this.state);
     this.calculate();
   };
 
@@ -148,24 +101,18 @@ export class StakeCalc extends Component {
     const stakeFav = this.state.stakeFav;
     const kef1 = this.state.kef1;
     let shut = this.state.addKefs;
-    console.log('shut', shut);
     const addKefsNew = [];
 
     for (var r = 0; r < shut.length; r++) {
       addKefsNew.push(shut[r]);
     }
 
-    console.log('calculate addKefsNew:', addKefsNew);
-
     let totKefs = 1;
 
     for (var i = 0; i < addKefsNew.length; i++) {
       let addKefsSplit = addKefsNew[i].split('/');
-      console.log('calculate addKefs[i]:', addKefsNew[i]);
-      console.log('calculate addKefsSplit[1]:', addKefsSplit[1]);
       totKefs *= addKefsSplit[1];
     }
-    console.log('calculate totKefs:', totKefs);
 
     const totalKefNew = kef1 * totKefs;
 
@@ -228,9 +175,9 @@ export class StakeCalc extends Component {
                   </MDBCol>
                 </MDBRow>
                 {this.state.array.length > 0 &&
-                  this.state.array.map(element => (
+                  this.state.array.map((element, i) => (
                     <StakeCalcTiny
-                      key={element}
+                      key={i}
                       index={element}
                       addKefsHandler={this.addKefsHandler}
                       calculate={this.calculate}
